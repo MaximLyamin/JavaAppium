@@ -1,7 +1,7 @@
 package lib.ui;
 
-import io.appium.java_client.AppiumDriver;
 import lib.Platform;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 abstract public class MyListsPageObject extends MainPageObject {
 
@@ -10,7 +10,7 @@ abstract public class MyListsPageObject extends MainPageObject {
             ARTICLE_BY_TITLE_XPATH_TPL,
             CLOSE_BUTTON_POPUP_WINDOW;
 
-    public MyListsPageObject(AppiumDriver driver) {
+    public MyListsPageObject(RemoteWebDriver driver) {
         super(driver);
     }
 
