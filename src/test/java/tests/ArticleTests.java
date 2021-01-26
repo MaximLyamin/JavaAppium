@@ -10,7 +10,7 @@ import org.junit.Test;
 public class ArticleTests extends CoreTestCase {
 
     private final static String search_line = "Java";
-    private final static String substring = "Object-oriented programming language";
+    private final static String substring = "bject-oriented programming language";
 
     @Test
     public void testCompareArticles() {

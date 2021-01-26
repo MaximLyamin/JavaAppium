@@ -14,8 +14,8 @@ abstract public class SearchPageObject extends MainPageObject {
         SEARCH_CLEAR_BUTTON,
         SEARCH_RESULT_BY_SUBSTRING_TPL,
         SEARCH_RESULT_BY_TITLE_AND_SUBSTRING_TPL,
-        SEARCH_RESULT_ELEMENT_XPATH,
-        SEARCH_EMPTY_RESULT_ELEMENT_XPATH,
+            SEARCH_RESULT_ELEMENT,
+            SEARCH_EMPTY_RESULT_ELEMENT,
         SEARCH_RESULT_TITLE_ARTICLE,
         SEARCH_RESULT_AFTER_CANCEL_ID;
 
@@ -108,22 +108,22 @@ abstract public class SearchPageObject extends MainPageObject {
 
     public int getAmountOfFoundArticles() {
         this.waitForElementPresent(
-                SEARCH_RESULT_ELEMENT_XPATH,
+                SEARCH_RESULT_ELEMENT,
                 "Cannot find anything by the request",
                 15);
 
-        return this.getAmountOfElements(SEARCH_RESULT_ELEMENT_XPATH);
+        return this.getAmountOfElements(SEARCH_RESULT_ELEMENT);
     }
 
     public void waitForEmptyResultsLabel() {
         this.waitForElementPresent(
-                SEARCH_EMPTY_RESULT_ELEMENT_XPATH,
+                SEARCH_EMPTY_RESULT_ELEMENT,
                 "Cannot find empty label by the request",
                 15);
     }
     public void assertThereIsNoResultOfSearch() {
         this.assertElementNotPresent(
-                SEARCH_RESULT_ELEMENT_XPATH,
+                SEARCH_RESULT_ELEMENT,
                 "We found some results by request");
     }
 

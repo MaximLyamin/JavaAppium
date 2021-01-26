@@ -17,7 +17,7 @@ public class MyListsTests extends CoreTestCase {
     private final static String search_line = "Java";
     private final static String name_of_folder = "Learning programming";
     private final static String first_article_title = "Java (programming language)";
-    private final static String substring_first_article = "Object-oriented programming language";
+    private final static String substring_first_article = "bject-oriented programming language";
     private final static String second_article_title = "JavaScript";
     private final static String substring_second_article = "High-level programming language";
 

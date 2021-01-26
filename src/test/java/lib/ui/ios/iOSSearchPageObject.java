@@ -12,8 +12,8 @@ public class iOSSearchPageObject extends SearchPageObject {
         SEARCH_CLEAR_BUTTON = "id:Clear text";
         SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://XCUIElementTypeStaticText[contains(@name,'{SUBSTRING}')]";
         SEARCH_RESULT_BY_TITLE_AND_SUBSTRING_TPL = "xpath://XCUIElementTypeStaticText[contains(@name,'{TITLE}')]/following-sibling::XCUIElementTypeStaticText[contains(@name,'{SUBSTRING}')]";
-        SEARCH_RESULT_ELEMENT_XPATH = "xpath://XCUIElementTypeCell";
-        SEARCH_EMPTY_RESULT_ELEMENT_XPATH = "xpath://XCUIElementTypeStaticText[@name='No results found']";
+        SEARCH_RESULT_ELEMENT = "xpath://XCUIElementTypeCell";
+        SEARCH_EMPTY_RESULT_ELEMENT = "xpath://XCUIElementTypeStaticText[@name='No results found']";
         SEARCH_RESULT_TITLE_ARTICLE = "xpath://XCUIElementTypeStaticText[contains(@name,'Java')]";
         SEARCH_RESULT_AFTER_CANCEL_ID = "id:org.wikipedia:id/search_empty_message";
     }
