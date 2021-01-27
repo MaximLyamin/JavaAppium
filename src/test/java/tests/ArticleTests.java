@@ -13,7 +13,7 @@ public class ArticleTests extends CoreTestCase {
     private final static String substring = "bject-oriented programming language";
 
     @Test
-    public void testCompareArticles() {
+    public void testCompareArticles() throws InterruptedException {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         String expected_title = "Java (programming language)";
@@ -25,7 +25,7 @@ public class ArticleTests extends CoreTestCase {
     }
 
     @Test
-    public void testSwipeArticle() {
+    public void testSwipeArticle() throws InterruptedException {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
@@ -37,7 +37,7 @@ public class ArticleTests extends CoreTestCase {
     }
 
     @Test
-    public void testCheckOpenArticleHasTitle() {
+    public void testCheckOpenArticleHasTitle() throws InterruptedException {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 

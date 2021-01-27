@@ -94,12 +94,13 @@ abstract public class SearchPageObject extends MainPageObject {
                 "Cannot find search result with substring " + substring);
     }
 
-    public void clickByArticleWithSubstring(String substring) {
+    public void clickByArticleWithSubstring(String substring) throws InterruptedException {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementAndClick(
                 search_result_xpath,
                 "Cannot find and click search result with substring " + substring,
                 5);
+        Thread.sleep(1000);
     }
 
     public void assertCompareSearchInputText(String expected_text) {

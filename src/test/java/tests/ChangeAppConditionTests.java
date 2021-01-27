@@ -13,7 +13,7 @@ public class ChangeAppConditionTests extends CoreTestCase {
     private final static String substring = "bject-oriented programming language";
 
     @Test
-    public void testChangeOrientationOnSearchResults() {
+    public void testChangeOrientationOnSearchResults() throws InterruptedException {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 

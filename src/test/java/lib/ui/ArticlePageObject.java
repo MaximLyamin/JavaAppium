@@ -9,9 +9,9 @@ abstract public class ArticlePageObject extends MainPageObject {
     protected static String
             TITLE,
             TITLE_XPATH,
-            FOOTER_ELEMENT_ID,
+            FOOTER_ELEMENT,
             OPTIONS_BUTTON_XPATH,
-            OPTIONS_ADD_TO_MY_LIST_BUTTON_XPATH,
+            OPTIONS_ADD_TO_MY_LIST_BUTTON,
             ADD_TO_MY_LIST_OVERLAY_ID,
             MY_LIST_NAME_INPUT_ID,
             MY_LIST_OK_BUTTON_XPATH,
@@ -29,28 +29,35 @@ abstract public class ArticlePageObject extends MainPageObject {
 
         if (Platform.getInstance().isAndroid()) {
             return this.waitForElementAndGetAttribute(TITLE, "text", "Cannot find article title on page!", 15);
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             return this.waitForElementAndGetAttribute(TITLE, "name", "Cannot find article title on page!", 15);
+        } else {
+            return this.waitForElementAndGetAttribute(TITLE, "text", "Cannot find article title on page!", 15);
         }
     }
 
     public void assertCompareArticles(String expected_text) {
-        if (Platform.getInstance().isAndroid()) {
-            this.assertElementHasText(TITLE, expected_text, "We see unexpected title", 15);
-        } else {
+       if (Platform.getInstance().isIOS()){
             this.assertElementHasText(TITLE_XPATH, expected_text, "We see unexpected title", 15);
+        } else {
+            this.assertElementHasText(TITLE, expected_text, "We see unexpected title", 15);
         }
     }
 
     public void swipeToFooter() {
-        if(Platform.getInstance().isAndroid()) {
+        if (Platform.getInstance().isAndroid()) {
             this.swipeUpToElement(
-                    FOOTER_ELEMENT_ID,
+                    FOOTER_ELEMENT,
+                    "Cannot find end of article",
+                    40);
+        } else if (Platform.getInstance().isIOS()) {
+            this.swipeUpTillElementAppear(
+                    FOOTER_ELEMENT,
                     "Cannot find end of article",
                     40);
         } else {
-            this.swipeUpTillElementAppear(
-                    FOOTER_ELEMENT_ID,
+            this.scrollWebPageTillElementNotVisible(
+                    FOOTER_ELEMENT,
                     "Cannot find end of article",
                     40);
         }
@@ -63,7 +70,7 @@ abstract public class ArticlePageObject extends MainPageObject {
                 5);
 
         this.waitForElementAndClick(
-                OPTIONS_ADD_TO_MY_LIST_BUTTON_XPATH,
+                OPTIONS_ADD_TO_MY_LIST_BUTTON,
                 "Cannot find 'Add to reading list' button",
                 5);
 
@@ -91,7 +98,7 @@ abstract public class ArticlePageObject extends MainPageObject {
 
     public void addArticlesToMySaved() {
         this.waitForElementAndClick(
-                OPTIONS_ADD_TO_MY_LIST_BUTTON_XPATH,
+                OPTIONS_ADD_TO_MY_LIST_BUTTON,
                 "Cannot find option to add article to reading list",
                 5);
     }
@@ -116,7 +123,7 @@ abstract public class ArticlePageObject extends MainPageObject {
                 5);
 
         this.waitForElementAndClick(
-                OPTIONS_ADD_TO_MY_LIST_BUTTON_XPATH,
+                OPTIONS_ADD_TO_MY_LIST_BUTTON,
                 "Cannot find 'Add to reading list' button",
                 5);
 
