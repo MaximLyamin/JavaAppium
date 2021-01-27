@@ -69,8 +69,10 @@ public class MainPageObject {
 
         if (Platform.getInstance().isAndroid()) {
             return element.getAttribute("text");
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             return element.getAttribute("name");
+        } else {
+            return element.getAttribute("aria-label");
         }
     }
 

@@ -14,8 +14,8 @@ abstract public class SearchPageObject extends MainPageObject {
         SEARCH_CLEAR_BUTTON,
         SEARCH_RESULT_BY_SUBSTRING_TPL,
         SEARCH_RESULT_BY_TITLE_AND_SUBSTRING_TPL,
-            SEARCH_RESULT_ELEMENT,
-            SEARCH_EMPTY_RESULT_ELEMENT,
+        SEARCH_RESULT_ELEMENT,
+        SEARCH_EMPTY_RESULT_ELEMENT,
         SEARCH_RESULT_TITLE_ARTICLE,
         SEARCH_RESULT_AFTER_CANCEL_ID;
 
@@ -59,14 +59,14 @@ abstract public class SearchPageObject extends MainPageObject {
     }
 
     public void clickClearSearch() {
-        if (Platform.getInstance().isAndroid()) {
+        if (Platform.getInstance().isIOS()) {
             this.waitForElementAndClick(
-                    SEARCH_CANCEL_BUTTON,
+                    SEARCH_CLEAR_BUTTON,
                     "Cannot find and click search cancel button",
                     5);
         } else {
             this.waitForElementAndClick(
-                    SEARCH_CLEAR_BUTTON,
+                    SEARCH_CANCEL_BUTTON,
                     "Cannot find and click search clear button",
                     5);
         }
