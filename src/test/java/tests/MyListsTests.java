@@ -67,7 +67,7 @@ public class MyListsTests extends CoreTestCase {
     }
 
     @Test
-    public void testSaveTwoArticlesToMyListThanOneDelete() throws InterruptedException {
+    public void testSaveTwoArticlesToMyListThanOneDelete() throws Exception {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         NavigationUI NavigationUI = NavigationUIFactory.get(driver);
@@ -80,6 +80,21 @@ public class MyListsTests extends CoreTestCase {
         if (Platform.getInstance().isAndroid()) {
             ArticlePageObject.addArticleToMyListFirstTime(name_of_folder);
         } else {
+            ArticlePageObject.addArticlesToMySaved();
+        }
+        if (Platform.getInstance().isMW()) {
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals(
+                    "We are not on the same page after login",
+                    first_article_title,
+                    ArticlePageObject.getArticleTitle());
+
             ArticlePageObject.addArticlesToMySaved();
         }
         ArticlePageObject.closeArticle();
@@ -99,10 +114,11 @@ public class MyListsTests extends CoreTestCase {
         if (Platform.getInstance().isIOS()){
             SearchPageObject.clickCancelSearch();
         }
+        NavigationUI.openNavigation();
         NavigationUI.clickMyList();
         if (Platform.getInstance().isAndroid()) {
             MyListsPageObject.openFolderByName(name_of_folder);
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             MyListsPageObject.clickOnCloseButtonOnPopupWindow();
         }
         MyListsPageObject.swipeByArticleToDelete(first_article_title);
