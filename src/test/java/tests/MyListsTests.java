@@ -2,10 +2,7 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.Platform;
-import lib.ui.ArticlePageObject;
-import lib.ui.MyListsPageObject;
-import lib.ui.NavigationUI;
-import lib.ui.SearchPageObject;
+import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
 import lib.ui.factories.MyListsPageObjectFactory;
 import lib.ui.factories.NavigationUIFactory;
@@ -20,9 +17,12 @@ public class MyListsTests extends CoreTestCase {
     private final static String substring_first_article = "bject-oriented programming language";
     private final static String second_article_title = "JavaScript";
     private final static String substring_second_article = "High-level programming language";
+    private final static String
+            login = "Matrosoff_spb",
+            password = "QazWsx123";
 
     @Test
-    public void testSaveFirstArticleToMyList() throws InterruptedException {
+    public void testSaveFirstArticleToMyList() throws Exception {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         NavigationUI NavigationUI = NavigationUIFactory.get(driver);
@@ -37,14 +37,30 @@ public class MyListsTests extends CoreTestCase {
         } else {
             ArticlePageObject.addArticlesToMySaved();
         }
+        if (Platform.getInstance().isMW()) {
+            AuthorizationPageObject Auth = new AuthorizationPageObject(driver);
+            Auth.clickAuthButton();
+            Auth.enterLoginData(login, password);
+            Auth.submitForm();
+
+            ArticlePageObject.waitForTitleElement();
+
+            assertEquals(
+                    "We are not on the same page after login",
+                    first_article_title,
+                    ArticlePageObject.getArticleTitle());
+
+            ArticlePageObject.addArticlesToMySaved();
+        }
         ArticlePageObject.closeArticle();
         if (Platform.getInstance().isIOS()){
             SearchPageObject.clickCancelSearch();
         }
+        NavigationUI.openNavigation();
         NavigationUI.clickMyList();
         if (Platform.getInstance().isAndroid()) {
             MyListsPageObject.openFolderByName(name_of_folder);
-        } else {
+        } else if (Platform.getInstance().isIOS()) {
             MyListsPageObject.clickOnCloseButtonOnPopupWindow();
         }
         MyListsPageObject.swipeByArticleToDelete(first_article_title);

@@ -12,6 +12,7 @@ abstract public class ArticlePageObject extends MainPageObject {
             FOOTER_ELEMENT,
             OPTIONS_BUTTON_XPATH,
             OPTIONS_ADD_TO_MY_LIST_BUTTON,
+            OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
             ADD_TO_MY_LIST_OVERLAY_ID,
             MY_LIST_NAME_INPUT_ID,
             MY_LIST_OK_BUTTON_XPATH,
@@ -32,12 +33,13 @@ abstract public class ArticlePageObject extends MainPageObject {
         } else if (Platform.getInstance().isIOS()) {
             return this.waitForElementAndGetAttribute(TITLE, "name", "Cannot find article title on page!", 15);
         } else {
-            return this.waitForElementAndGetAttribute(TITLE, "text", "Cannot find article title on page!", 15);
+            WebElement title_element = this.waitForTitleElement();
+            return title_element.getText();
         }
     }
 
     public void assertCompareArticles(String expected_text) {
-       if (Platform.getInstance().isIOS()){
+        if (Platform.getInstance().isIOS()) {
             this.assertElementHasText(TITLE_XPATH, expected_text, "We see unexpected title", 15);
         } else {
             this.assertElementHasText(TITLE, expected_text, "We see unexpected title", 15);
@@ -97,17 +99,35 @@ abstract public class ArticlePageObject extends MainPageObject {
     }
 
     public void addArticlesToMySaved() {
+        if (Platform.getInstance().isMW()) {
+            this.removeArticleFromSavedIfItAdded();
+        }
         this.waitForElementAndClick(
                 OPTIONS_ADD_TO_MY_LIST_BUTTON,
                 "Cannot find option to add article to reading list",
                 5);
     }
 
+    public void removeArticleFromSavedIfItAdded() {
+        if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)) {
+            this.waitForElementAndClick(
+                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    "Cannot click button to remove an article from saved",
+                    5);
+            this.waitForElementPresent(
+                    OPTIONS_REMOVE_FROM_MY_LIST_BUTTON,
+                    "Cannot find button to add an article to saved list after removing it from this list before");
+        }
+    }
+
     public void closeArticle() {
-        this.waitForElementAndClick(
-                CLOSE_ARTICLE_BUTTON_XPATH,
-                "Cannot close article, cannot find X button",
-                5);
+        if (Platform.getInstance().isAndroid() || Platform.getInstance().isIOS()) {
+            this.waitForElementAndClick(
+                    CLOSE_ARTICLE_BUTTON_XPATH,
+                    "Cannot close article, cannot find X button",
+                    5);
+        }
+        System.out.println("Method closeArticle() does nothing for platform " + Platform.getInstance().getPlatformVar());
     }
 
     public void assertTitleByIdIsPresentOnOpenArticle() {
