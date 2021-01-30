@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class WelcomePageObject extends MainPageObject {
@@ -17,6 +18,7 @@ public class WelcomePageObject extends MainPageObject {
             SKIP_BUTTON = "id:Skip",
             GET_STARTED_BUTTON = "id:Get started";
 
+    @Step("Waiting link 'Learn More'")
     public void waitForLearnMoreLink() {
         this.waitForElementPresent(
                 STEP_LEARN_MORE_LINK,
@@ -24,6 +26,7 @@ public class WelcomePageObject extends MainPageObject {
                 10);
     }
 
+    @Step("Clicking 'Next' button")
     public void clickNextButton() {
         this.waitForElementAndClick(
                 NEXT_LINK,
@@ -31,6 +34,7 @@ public class WelcomePageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting page with text 'New Way to Explore'")
     public void waitForNewWayToExploreText() {
         this.waitForElementPresent(
                 STEP_NEW_WAYS_TO_EXPLORE_TEXT,
@@ -38,6 +42,7 @@ public class WelcomePageObject extends MainPageObject {
                 10);
     }
 
+    @Step("Waiting page with text 'Add or edit preferred language'")
     public void waitForAddOrEditPreferredLangText() {
         this.waitForElementPresent(
                 STEP_ADD_OR_EDIT_PREFERRED_LANG_LINK,
@@ -45,6 +50,7 @@ public class WelcomePageObject extends MainPageObject {
                 10);
     }
 
+    @Step("Waiting page with text 'For learn more about data collected'")
     public void waitForLearnMoreAboutDataCollectedText() {
         this.waitForElementPresent(
                 STEP_LEARN_MORE_ABOUT_DATA_COLLECTED_LINK,
@@ -52,6 +58,7 @@ public class WelcomePageObject extends MainPageObject {
                 10);
     }
 
+    @Step("Clicking 'Get started' button")
     public void clickGetStartedButton() {
         this.waitForElementAndClick(
                 GET_STARTED_BUTTON,
@@ -59,6 +66,7 @@ public class WelcomePageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Clicking 'Skip' button")
     public void clickSkip() {
         this.waitForElementAndClick(SKIP_BUTTON, "Cannot find and click 'skip button'", 5);
     }
