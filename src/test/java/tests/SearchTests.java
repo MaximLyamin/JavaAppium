@@ -1,6 +1,7 @@
 package tests;
 
-import io.qameta.allure.Epic;
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
@@ -13,6 +14,11 @@ public class SearchTests extends CoreTestCase {
     private final static String search_line = "Java";
 
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test search mechanism")
+    @Description("We search 'Java' and compare substring")
+    @Step("Starting test testSearch")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testSearch() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
 
@@ -22,6 +28,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test cancel search mechanism")
+    @Description("We search 'Java' and cancel search results")
+    @Step("Starting test testCancelSearch")
+    @Severity(value = SeverityLevel.TRIVIAL)
     public void testCancelSearch() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
 
@@ -30,7 +41,13 @@ public class SearchTests extends CoreTestCase {
         SearchPageObject.clickCancelSearch();
         SearchPageObject.waitForCancelButtonToDisappear();
     }
+
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test amount of not empty search")
+    @Description("We search 'Linkin Park Discography' and compare search result is not empty")
+    @Step("Starting test testAmountOfNotEmptySearch")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testAmountOfNotEmptySearch() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         String search_line = "Linkin Park Discography";
@@ -45,6 +62,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test amount of empty search")
+    @Description("We search 'zxvasdfqwer' and compare search result is empty")
+    @Step("Starting test testAmountOfEmptySearch")
+    @Severity(value = SeverityLevel.MINOR)
     public void testAmountOfEmptySearch() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         String search_line = "zxvasdfqwer";
@@ -56,6 +78,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test input field has text 'Search'")
+    @Description("We clicking on input field and compare text")
+    @Step("Starting test testFieldInputHasText")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testFieldInputHasText() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         String expected_text = "Search";
@@ -65,6 +92,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test check keyword in visible search result")
+    @Description("We search an articles and compare visible search result has keyword in each result")
+    @Step("Starting test testCheckKeyWordInSearchResults")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testCheckKeyWordInSearchResults() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -74,6 +106,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search")})
+    @DisplayName("Test clear search result")
+    @Description("We search an articles and clear search result")
+    @Step("Starting test testCancelSearchResults")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testCancelSearchResults() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
@@ -85,6 +122,11 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article")})
+    @DisplayName("Test search an article with title and description")
+    @Description("Test search an article with title and description and compare in search results more than 3 articles")
+    @Step("Starting test testSearchArticleWithTitleAndDescription")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testSearchArticleWithTitleAndDescription() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         String substring = "bject-oriented programming language";
