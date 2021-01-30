@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -29,6 +30,7 @@ abstract public class MyListsPageObject extends MainPageObject {
     }
     /* TEMPLATES METHODS */
 
+    @Step("Opening folder '{name_of_folder}'")
     public void openFolderByName(String name_of_folder) {
         String folder_name_xpath = getFolderXpathByName(name_of_folder);
 
@@ -38,6 +40,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Swiping article '{article_title}' to delete")
     public void swipeByArticleToDelete(String article_title) {
         this.waitForArticleToAppearByTitle(article_title);
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
@@ -65,6 +68,7 @@ abstract public class MyListsPageObject extends MainPageObject {
         this.waitForArticleToDisappearByTitle(article_title);
     }
 
+    @Step("Waiting article '{article_title}' to appear")
     public void waitForArticleToAppearByTitle(String article_title) {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
 
@@ -74,6 +78,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting article '{article_title}' to disappear")
     public void waitForArticleToDisappearByTitle(String article_title) {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
 
@@ -83,6 +88,7 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Opening article '{article_title}' in saved list")
     public void openArticleByTitleInSavedList(String article_title) {
         String article_title_xpath = getSavedArticleXpathByTitle(article_title);
 
@@ -92,12 +98,13 @@ abstract public class MyListsPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Getting article '{article_title}' xpath in saved list")
     public String getArticleByTitleXpathInSavedList(String article_title) {
         return getSavedArticleXpathByTitle(article_title);
     }
 
-    public void clickOnCloseButtonOnPopupWindow()
-    {
+    @Step("Clicking on close button on popup window")
+    public void clickOnCloseButtonOnPopupWindow() {
         this.waitForElementAndClick(CLOSE_BUTTON_POPUP_WINDOW,
                 "Cannot find and click x button on sync popup",
                 5);
