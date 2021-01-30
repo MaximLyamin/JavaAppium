@@ -1,6 +1,7 @@
 package tests;
 
-import io.qameta.allure.Epic;
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
@@ -25,6 +26,11 @@ public class MyListsTests extends CoreTestCase {
             password = "QazWsx123";
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article"), @Feature(value = "My Lists")})
+    @DisplayName("Save article to My List")
+    @Description("We open an article and save it to My List")
+    @Step("Starting test testSaveFirstArticleToMyList")
+    @Severity(value = SeverityLevel.CRITICAL)
     public void testSaveFirstArticleToMyList() throws Exception {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
@@ -70,6 +76,11 @@ public class MyListsTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article"), @Feature(value = "My Lists")})
+    @DisplayName("Save 2 articles to My List than 1 delete")
+    @Description("We open first article and save it to My List, we open second article and save it to My List than open My List and delete First article")
+    @Step("Starting test testSaveTwoArticlesToMyListThanOneDelete")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testSaveTwoArticlesToMyListThanOneDelete() throws Exception {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
