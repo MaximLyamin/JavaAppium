@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class AuthorizationPageObject extends MainPageObject {
@@ -14,6 +15,7 @@ public class AuthorizationPageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Clicking Authorization button")
     public void clickAuthButton() throws Exception {
         Thread.sleep(1000);
         this.waitForElementPresent(
@@ -27,6 +29,7 @@ public class AuthorizationPageObject extends MainPageObject {
         Thread.sleep(1000);
     }
 
+    @Step("Entering login and password")
     public void enterLoginData(String login, String password) {
         this.waitForElementAndSendKeys(
                 LOGIN_INPUT,
@@ -40,6 +43,7 @@ public class AuthorizationPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Submitting login form")
     public void submitForm() {
         this.waitForElementAndClick(
                 SUBMIT_BUTTON,
