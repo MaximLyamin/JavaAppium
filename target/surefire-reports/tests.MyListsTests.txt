@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------
+Test set: tests.MyListsTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 34.429 s <<< FAILURE! - in tests.MyListsTests
+testSaveTwoArticlesToMyListThanOneDelete(tests.MyListsTests)  Time elapsed: 34.309 s  <<< ERROR!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: Saved article still present with title Java (programming language)
+ (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'Maxims-MacBook-Pro.local', ip: 'fe80:0:0:0:cd2:b96:e149:7cd4%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.16', java.version: '1.8.0_271'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 88.0.4324.96, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: /var/folders/sx/5vfpx8sn49v...}, goog:chromeOptions: {debuggerAddress: localhost:63777}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: e058ab59aabe41d03ee68088547a1915
+	at tests.MyListsTests.testSaveTwoArticlesToMyListThanOneDelete(MyListsTests.java:127)
+

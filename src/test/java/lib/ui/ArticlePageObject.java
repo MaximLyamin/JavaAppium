@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,10 +23,12 @@ abstract public class ArticlePageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Waiting for title on the article page")
     public WebElement waitForTitleElement() {
         return this.waitForElementPresent(TITLE, "Cannot find article title on page!", 15);
     }
 
+    @Step("Get article title")
     public String getArticleTitle() {
 
         if (Platform.getInstance().isAndroid()) {
@@ -34,10 +37,12 @@ abstract public class ArticlePageObject extends MainPageObject {
             return this.waitForElementAndGetAttribute(TITLE, "name", "Cannot find article title on page!", 15);
         } else {
             WebElement title_element = this.waitForTitleElement();
+            screenshot(this.takeScreenshot("allure_title"));
             return title_element.getText();
         }
     }
 
+    @Step("Making sure the compared titles are equal")
     public void assertCompareArticles(String expected_text) {
         if (Platform.getInstance().isIOS()) {
             this.assertElementHasText(TITLE_XPATH, expected_text, "We see unexpected title", 15);
@@ -46,6 +51,7 @@ abstract public class ArticlePageObject extends MainPageObject {
         }
     }
 
+    @Step("Swiping to footer an article page")
     public void swipeToFooter() {
         if (Platform.getInstance().isAndroid()) {
             this.swipeUpToElement(
@@ -65,6 +71,7 @@ abstract public class ArticlePageObject extends MainPageObject {
         }
     }
 
+    @Step("Adding the article to my list first time")
     public void addArticleToMyListFirstTime(String name_of_folder) {
         this.waitForElementAndClick(
                 OPTIONS_BUTTON_XPATH,
@@ -98,6 +105,7 @@ abstract public class ArticlePageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Adding the article to my saved articles")
     public void addArticlesToMySaved() {
         if (Platform.getInstance().isMW()) {
             this.removeArticleFromSavedIfItAdded();
@@ -108,6 +116,7 @@ abstract public class ArticlePageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Removing the article from saved if it has been added")
     public void removeArticleFromSavedIfItAdded() {
         if (this.isElementPresent(OPTIONS_REMOVE_FROM_MY_LIST_BUTTON)) {
             this.waitForElementAndClick(
@@ -120,6 +129,7 @@ abstract public class ArticlePageObject extends MainPageObject {
         }
     }
 
+    @Step("Closing the article")
     public void closeArticle() {
         if (Platform.getInstance().isAndroid() || Platform.getInstance().isIOS()) {
             this.waitForElementAndClick(
@@ -130,12 +140,14 @@ abstract public class ArticlePageObject extends MainPageObject {
         System.out.println("Method closeArticle() does nothing for platform " + Platform.getInstance().getPlatformVar());
     }
 
+    @Step("Making sure the open article has a title")
     public void assertTitleByIdIsPresentOnOpenArticle() {
         this.assertElementPresent(
                 TITLE,
                 "Cannot find article title on open page by id " + TITLE);
     }
 
+    @Step("Adding the article to the created my list")
     public void addArticleToMyCreatedList(String name_of_folder) {
         this.waitForElementAndClick(
                 OPTIONS_BUTTON_XPATH,

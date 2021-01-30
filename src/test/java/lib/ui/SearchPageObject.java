@@ -1,5 +1,6 @@
 package lib.ui;
 
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.junit.Assert;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -32,6 +33,7 @@ abstract public class SearchPageObject extends MainPageObject {
     }
     /* TEMPLATES METHODS */
 
+    @Step("Initializing the search field")
     public void initSearchInput() {
         this.waitForElementAndClick(
                 SEARCH_INIT_ELEMENT,
@@ -44,6 +46,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting for button to cancel search result")
     public void waitForCancelButtonToAppear() {
         this.waitForElementPresent(
                 SEARCH_CANCEL_BUTTON,
@@ -51,6 +54,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting for search cancel button to disappear")
     public void waitForCancelButtonToDisappear() {
         this.waitForElementNotPresent(
                 SEARCH_CANCEL_BUTTON,
@@ -58,6 +62,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Clicking button to clear search result")
     public void clickClearSearch() {
         if (Platform.getInstance().isIOS()) {
             this.waitForElementAndClick(
@@ -72,6 +77,7 @@ abstract public class SearchPageObject extends MainPageObject {
         }
     }
 
+    @Step("Clicking button to cancel search result")
     public void clickCancelSearch() {
             this.waitForElementAndClick(
                     SEARCH_CANCEL_BUTTON,
@@ -79,6 +85,7 @@ abstract public class SearchPageObject extends MainPageObject {
                     5);
     }
 
+    @Step("Typing '{search_line}' to the search line")
     public void typeSearchLine(String search_line){
         this.waitForElementAndSendKeys(
                 SEARCH_INPUT,
@@ -87,6 +94,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 5);
     }
 
+    @Step("Waiting for '{substring}'")
     public void waitForSearchResult(String substring) {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementPresent(
@@ -94,6 +102,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 "Cannot find search result with substring " + substring);
     }
 
+    @Step("Waiting for search result and select an article by '{substring}' in article title")
     public void clickByArticleWithSubstring(String substring) throws InterruptedException {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementAndClick(
@@ -103,10 +112,12 @@ abstract public class SearchPageObject extends MainPageObject {
         Thread.sleep(1000);
     }
 
+    @Step("Making sure there is Search field has '{expected_text}'")
     public void assertCompareSearchInputText(String expected_text) {
             this.assertElementHasText(SEARCH_INPUT_ID, expected_text, "We see unexpected title", 15);
     }
 
+    @Step("Getting amount of found articles")
     public int getAmountOfFoundArticles() {
         this.waitForElementPresent(
                 SEARCH_RESULT_ELEMENT,
@@ -116,18 +127,22 @@ abstract public class SearchPageObject extends MainPageObject {
         return this.getAmountOfElements(SEARCH_RESULT_ELEMENT);
     }
 
+    @Step("Waiting for empty result label")
     public void waitForEmptyResultsLabel() {
         this.waitForElementPresent(
                 SEARCH_EMPTY_RESULT_ELEMENT,
                 "Cannot find empty label by the request",
                 15);
     }
+
+    @Step("Making sure there are no results for the search")
     public void assertThereIsNoResultOfSearch() {
         this.assertElementNotPresent(
                 SEARCH_RESULT_ELEMENT,
                 "We found some results by request");
     }
 
+    @Step("Making sure there is '{search_line}' in visible search results")
     public void checkKeyWordInVisibleSearchResults(String search_line) {
         this.checkKeyWordInEachVisibleResult(
                 SEARCH_RESULT_TITLE_ARTICLE,
@@ -136,11 +151,13 @@ abstract public class SearchPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Making sure there is some result for the search")
     public void assertThereIsSomeResultOfSearch() {
         int elements = this.getAmountOfFoundArticles();
         Assert.assertTrue("Cannot see less than 3 articles", elements > 2);
     }
 
+    @Step("Making sure there are no results for the search after cancel")
     public void assertThereNoResultOfSearchAfterCancel() {
         this.waitForElementPresent(
                 SEARCH_RESULT_AFTER_CANCEL_ID,
@@ -148,6 +165,7 @@ abstract public class SearchPageObject extends MainPageObject {
                 15);
     }
 
+    @Step("Waiting for search result and select an article by '{title}' and '{description}'")
     public void waitForElementByTitleAndDescription(String title, String description) {
         String article_title_and_subscription_xpath = getResultSearchElementByTitleAndSubstring(title, description);
         this.waitForElementPresent(

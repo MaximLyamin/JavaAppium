@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Epic;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.ArticlePageObject;
@@ -9,17 +10,20 @@ import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
+@Epic("Tests for change app condition")
 public class ChangeAppConditionTests extends CoreTestCase {
 
     private final static String search_line = "Java";
     private final static String substring = "bject-oriented programming language";
 
     @Test
-    public void testChangeOrientationOnSearchResults() throws InterruptedException {
+    public void testChangeOrientationOnSearchResults() throws InterruptedException, IOException {
         if (Platform.getInstance().isMW()) {
             return;
         }
-        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
 
         SearchPageObject.initSearchInput();
@@ -48,7 +52,7 @@ public class ChangeAppConditionTests extends CoreTestCase {
         if (Platform.getInstance().isMW()) {
             return;
         }
-        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);;
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);

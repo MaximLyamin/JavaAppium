@@ -1,11 +1,13 @@
 package tests;
 
+import io.qameta.allure.Epic;
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
+@Epic("Tests for search")
 public class SearchTests extends CoreTestCase {
 
     private final static String search_line = "Java";

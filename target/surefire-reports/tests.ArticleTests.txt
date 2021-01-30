@@ -1,22 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: tests.ArticleTests
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 20.258 s <<< FAILURE! - in tests.ArticleTests
-testCompareArticles(tests.ArticleTests)  Time elapsed: 10.108 s  <<< ERROR!
-java.lang.Exception: Cannot detect type of the Driver. Platform value: null
-
-testCompareArticles(tests.ArticleTests)  Time elapsed: 10.11 s  <<< ERROR!
-java.lang.NullPointerException
-
-testSwipeArticle(tests.ArticleTests)  Time elapsed: 5.008 s  <<< ERROR!
-java.lang.Exception: Cannot detect type of the Driver. Platform value: null
-
-testSwipeArticle(tests.ArticleTests)  Time elapsed: 5.009 s  <<< ERROR!
-java.lang.NullPointerException
-
-testCheckOpenArticleHasTitle(tests.ArticleTests)  Time elapsed: 5.006 s  <<< ERROR!
-java.lang.Exception: Cannot detect type of the Driver. Platform value: null
-
-testCheckOpenArticleHasTitle(tests.ArticleTests)  Time elapsed: 5.007 s  <<< ERROR!
-java.lang.NullPointerException
-
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.129 s - in tests.ArticleTests
