@@ -1,6 +1,7 @@
 package tests;
 
-import io.qameta.allure.Epic;
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.ArticlePageObject;
@@ -19,6 +20,11 @@ public class ChangeAppConditionTests extends CoreTestCase {
     private final static String substring = "bject-oriented programming language";
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article"), @Feature(value = "NFT")})
+    @DisplayName("Compare article titles after rotate screen")
+    @Description("We open 'Java (programming language)' article and rotate device screen and make sure the title is expected")
+    @Step("Starting test testChangeOrientationOnSearchResults")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testChangeOrientationOnSearchResults() throws InterruptedException, IOException {
         if (Platform.getInstance().isMW()) {
             return;
@@ -48,6 +54,11 @@ public class ChangeAppConditionTests extends CoreTestCase {
     }
 
     @Test
+    @Features(value = {@Feature(value = "Search"), @Feature(value = "Article"), @Feature(value = "NFT")})
+    @DisplayName("Compare article titles after background")
+    @Description("We open 'Java (programming language)' article and background app and make sure the title is expected")
+    @Step("Starting test testCheckSearchArticleInBackground")
+    @Severity(value = SeverityLevel.MINOR)
     public void testCheckSearchArticleInBackground() {
         if (Platform.getInstance().isMW()) {
             return;
